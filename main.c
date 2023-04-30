@@ -4,6 +4,15 @@
 #include "lib/Stack.h"
 
 int main(){
+    
+    char a[] = "[qskldjf qsfk qskldfj jfqsdfkl]"; //true
+    char b[] = "[(abc)()]";//true
+    char c[] = "{[()]}";//true
+    char d[] = "([)]"; //false
+    char e[] = "((())()"; //false
+    
+    
+    
     Stack* s = createStack(10);
 
     printStack(s);

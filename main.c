@@ -3,6 +3,7 @@
 
 #include "lib/Stack.h"
 
+// Mohamed solution
 int sherching (char *a,char c_start,char c_end){
     int endis;
     for(int i=0;a[i]!='\0';i++){
@@ -84,6 +85,51 @@ int test (char *a){
 }
 
 
+// Houssam solution 
+// this function test if the parenthesis are blanced or not
+// text is a null terminated string
+// return 0 if not balanced 
+// retrun other value if balanced
+char isParenthesisBalaced(char* text){
+    
+    //get a stack of size 50
+    Stack* stack = createDefaultStack();
+    
+    // loop thro the string char by char
+    for(int i=0;text[i]!='\0';i++){
+        char c = text[i];
+        
+        //push opening characteres 
+        if(c == '{' || c == '[' || c == '(' ){
+            push(stack,c);
+            continue;
+        }
+
+
+        // test with closing characters
+        if(c == '}'){
+            char val = pop(stack);
+            if(val != '{')
+                return 0;
+        }
+
+        if(c == ']'){
+            char val = pop(stack);
+            if(val != '[')
+                return 0;
+        }
+
+        if(c == ')'){
+            char val = pop(stack);
+            if(val != '(')
+                return 0;
+        }
+    }
+    
+    //if the stack is not empty retrun 0
+    return (stack->n == 0);
+}
+
 int main(){
     
     char a[] = "[qskldjf qsfk qskldfj jfqsdfkl]"; //true
@@ -92,40 +138,19 @@ int main(){
     char d[] = "([)]"; //false
     char e[] = "((())()"; //false
     
-    
-    /*
-    Stack* s = createStack(10);
 
-    printStack(s);
-    printf("isEmpty? %d \n",isEmpty(s));
-
-
-    push(s,8);
-    push(s,5);
-    push(s,2);
-
-    printStack(s);
-
-    int a = pop(s);
-    printf("a=%d \n", a );
-    printStack(s);
-
-    push(s,8);
-    printStack(s);
-
-    printf("isEmpty? %d \n",isEmpty(s));
-
-    while (!isEmpty(s))
-    {
-        int a = pop(s);
-        printf("%d \n", a);
-    }
-
-    printStack(s);
-    
-
-    deleteStack(s);
-    */
+    //Moh solution
+    printf("moh solution \n");
     printf("a = %d\nb = %d\nc = %d\nd = %d\ne = %d\n",test(a),test(b),test(c),test(d),test(e));
+    
+    //Houssam solution
+    printf("Houssam solution \n");
+    printf("a = %d\nb = %d\nc = %d\nd = %d\ne = %d\n",
+        isParenthesisBalaced(a),
+        isParenthesisBalaced(b),
+        isParenthesisBalaced(c),
+        isParenthesisBalaced(d),
+        isParenthesisBalaced(e));
+    
     return 0;
 }

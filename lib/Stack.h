@@ -3,14 +3,14 @@
 
 
 typedef struct Stack{
-    int* t;
+    char* t;
     int n;
 } Stack;
 
 
 
 Stack* createStack(int capacity){
-    int* t = (int *) malloc(capacity * sizeof(int));
+    char* t = (char *) malloc(capacity * sizeof(char));
     Stack* s = (Stack*) malloc(sizeof(Stack));
     (*s).t = t;
     s->n=0;
@@ -26,18 +26,18 @@ void deleteStack(Stack* s){
     free(s);
 }
 
-void push(Stack* s,int n){
-    int* tab = s->t;
-    tab[s->n] = n;
+void push(Stack* s,char c){
+    char* tab = s->t;
+    tab[s->n] = c;
     s->n++;
 }
 
-int pop(Stack* s){
+char pop(Stack* s){
     if(s->n == 0)
-        return -1;
+        return 0;
 
-    int* tab = s->t;
-    int val = tab[(s->n) -1];
+    char* tab = s->t;
+    char val = tab[(s->n) -1];
     s->n--;
     return val;
 }
@@ -52,7 +52,7 @@ char isEmpty(Stack* s){
 
 void printStack(Stack *s){
     
-    int* tab = s->t;
+    char* tab = s->t;
     int size = s->n;
 
     if(size == 0){
@@ -63,7 +63,7 @@ void printStack(Stack *s){
     printf("[");
     for (int i = 0; i < size -1; i++)
     {
-        printf("%d,",tab[i]);
+        printf("%c,",tab[i]);
     }
-    printf("(%d)]\n",tab[size-1]);    
+    printf("(%c)]\n",tab[size-1]);    
 }
